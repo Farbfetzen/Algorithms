@@ -10,6 +10,14 @@
 
     <name>Algorithms</name>
     <description>Various algorithms implemented in Java</description>
+    <url>https://github.com/Farbfetzen/Algorithms</url>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <maven.compiler.release>18</maven.compiler.release>
