@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %highlight(%-5level) %logger{36}: %message%n</pattern>
+        </encoder>
+        <!-- Use <withJansi>true</withJansi> to filter out ANSI escape sequences if a terminal can't handle them.
+             Needs the dependency org.fusesource.jansi:jansi.
+             See https://logback.qos.ch/manual/layouts.html#coloring -->
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="consoleAppender" />
+    </root>
+
+</configuration>
