@@ -21,6 +21,7 @@
 
     <properties>
         <maven.compiler.release>18</maven.compiler.release>
+        <mainClass>de.farbfetzen.algorithms.Main</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -67,7 +68,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>de.farbfetzen.algorithms.Main</mainClass>
+                    <mainClass>${mainClass}</mainClass>
                 </configuration>
             </plugin>
         </plugins>
