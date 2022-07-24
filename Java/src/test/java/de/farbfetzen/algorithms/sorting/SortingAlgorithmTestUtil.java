@@ -12,11 +12,12 @@ import static org.junit.jupiter.api.Named.named;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 @UtilityClass
-class SortingAlgorithmTestConstants {
+class SortingAlgorithmTestUtil {
 
-    public static final String CLASS_NAME = "de.farbfetzen.algorithms.sorting.SortingAlgorithmTestConstants#";
+    public static final String CLASS_NAME = "de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil#";
     public static final String PROVIDE_ARRAYS_TO_SORT = CLASS_NAME + "provideArraysToSort";
     public static final String PROVIDE_ARRAYS_TO_NOT_THROW = CLASS_NAME + "provideArraysToNotThrow";
+    public static final String PROVIDE_ARRAYS_TO_SORT_WITHOUT_LARGE = CLASS_NAME + "provideArraysToSortWithoutLarge";
 
     private static final Random random = new Random();
     @SuppressWarnings("MismatchedReadAndWriteOfArray")
@@ -28,7 +29,7 @@ class SortingAlgorithmTestConstants {
     private static final int[] SORTED = IntStream.range(0, 100).toArray();
     private static final int[] REVERSED = IntStream.range(0, 100).map(i -> 100 - i - 1).toArray();
 
-    private static int[] getRandomInts(final int n, final int min, final int max) {
+    static int[] getRandomInts(final int n, final int min, final int max) {
         final var array = random.ints(n, min, max).toArray();
         while (ArrayUtils.isSorted(array)) {
             ArrayUtils.shuffle(array);
@@ -36,7 +37,7 @@ class SortingAlgorithmTestConstants {
         return array;
     }
 
-    public static Stream<Arguments> provideArraysToSort() {
+    static Stream<Arguments> provideArraysToSort() {
         return Stream.of(
                 // @formatter:off
                 arguments(named("small array", SMALL.clone())),
@@ -48,11 +49,22 @@ class SortingAlgorithmTestConstants {
         );
     }
 
-    public static Stream<Arguments> provideArraysToNotThrow() {
+    static Stream<Arguments> provideArraysToNotThrow() {
         return Stream.of(
                 // @formatter:off
                 arguments(named("single array", SINGLE.clone())),
                 arguments(named("empty array with length zero", EMPTY.clone()))
+                // @formatter:on
+        );
+    }
+
+    static Stream<Arguments> provideArraysToSortWithoutLarge() {
+        return Stream.of(
+                // @formatter:off
+                arguments(named("small array", SMALL.clone())),
+                arguments(named("medium array", MEDIUM.clone())),
+                arguments(named("sorted array", SORTED.clone())),
+                arguments(named("reversed array", REVERSED.clone()))
                 // @formatter:on
         );
     }

@@ -3,8 +3,8 @@ package de.farbfetzen.algorithms.sorting;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestConstants.PROVIDE_ARRAYS_TO_NOT_THROW;
-import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestConstants.PROVIDE_ARRAYS_TO_SORT;
+import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_NOT_THROW;
+import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_SORT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 

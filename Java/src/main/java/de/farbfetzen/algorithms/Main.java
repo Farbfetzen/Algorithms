@@ -7,13 +7,20 @@ import de.farbfetzen.algorithms.sorting.SortingAlgorithmRunner;
 @Slf4j
 public class Main {
 
+    private static final AlgorithmRunner[] runners = {new SortingAlgorithmRunner()};
+
     public static void main(final String[] args) {
         // TODO: Proper argument parsing.
         if (args.length > 0 && !args[0].isBlank()) {
             final var algorithmName = args[0];
-            if (SortingAlgorithmRunner.isSortingAlgorithm(algorithmName)) {
-                SortingAlgorithmRunner.run(algorithmName, args);
-            } else {
+            boolean foundAlgorithm = false;
+            for (final AlgorithmRunner runner : runners) {
+                if (runner.hasAlgorithm(algorithmName)) {
+                    foundAlgorithm = true;
+                    runner.run(algorithmName, args);
+                }
+            }
+            if (!foundAlgorithm) {
                 logger.error("Unknown algorithm name '{}'", algorithmName);
             }
         } else {
