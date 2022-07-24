@@ -48,6 +48,10 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
         logger.info("Running {}", algorithmName);
         final var algo = SortAlgo.getByName(algorithmName);
         if ("-v".equals(args[1])) {
+            if (algo.className == null) {
+                logger.error("Algorithm '{}' does not have a visualization.", algorithmName);
+                return;
+            }
             visualize(algo.className);
         } else {
             run(algo.sortMethod);
