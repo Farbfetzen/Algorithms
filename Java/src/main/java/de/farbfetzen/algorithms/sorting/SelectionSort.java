@@ -1,14 +1,64 @@
 package de.farbfetzen.algorithms.sorting;
 
-import lombok.experimental.UtilityClass;
+import java.util.HashSet;
+import java.util.Set;
+
+import lombok.Getter;
 
 import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
 
-@UtilityClass
-public class SelectionSort {
+public class SelectionSort implements StepWiseSorter {
+
+    @Getter
+    private final int[] array;
+    @Getter
+    private boolean finished = false;
+    @Getter
+    private final Set<Integer> comparisons = new HashSet<>();
+    private int i;
+    private int maxValueCurrentIndex = 0;
+    private int maxValueSearchIndex = 0;
+
+    public SelectionSort(final int[] array) {
+        this.array = array;
+        i = array.length - 1;
+        checkIfFinished();
+    }
+
+    @Override
+    public Set<Integer> getHighlights() {
+        return Set.of(i);
+    }
+
+    private void checkIfFinished() {
+        finished = i <= 0;
+    }
+
+    @Override
+    public void step() {
+        if (finished) {
+            return;
+        }
+        if (maxValueSearchIndex < i) {
+            maxValueSearchIndex++;
+            if (array[maxValueSearchIndex] > array[maxValueCurrentIndex]) {
+                maxValueCurrentIndex = maxValueSearchIndex;
+            }
+        } else {
+            swap(array, i, maxValueCurrentIndex);
+            i--;
+            maxValueCurrentIndex = 0;
+            maxValueSearchIndex = 0;
+        }
+        comparisons.clear();
+        comparisons.add(maxValueCurrentIndex);
+        comparisons.add(maxValueSearchIndex);
+        checkIfFinished();
+    }
 
     /**
      * Sort an array in place using selection sort.
+     *
      * @param array the array to sort
      */
     public static void sort(final int[] array) {

@@ -5,10 +5,12 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import processing.core.PApplet;
 
 import de.farbfetzen.algorithms.AlgorithmRunner;
@@ -21,7 +23,7 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
     @RequiredArgsConstructor
     enum SortAlgo {
         INSERTION_SORT("insertion sort", InsertionSort::sort, InsertionSort.class.getName()),
-        SELECTION_SORT("selection sort", SelectionSort::sort, null),
+        SELECTION_SORT("selection sort", SelectionSort::sort, SelectionSort.class.getName()),
         HEAP_SORT("heap sort", HeapSort::sort, null);
 
         final String name;
@@ -67,7 +69,8 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
 
     private static void visualize(final String className) {
         logger.info("Starting visualization");
-        final var elements = random.ints(100, 1, 100).toArray();
+        final var elements = IntStream.rangeClosed(1, 100).toArray();
+        ArrayUtils.shuffle(elements);
         final var stringElementStream = Arrays.stream(elements).mapToObj(String::valueOf);
         PApplet.main(
                 SortingVisualisation.class,

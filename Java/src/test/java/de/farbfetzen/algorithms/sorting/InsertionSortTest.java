@@ -27,22 +27,21 @@ class InsertionSortTest {
     @ParameterizedTest
     @MethodSource(PROVIDE_ARRAYS_TO_SORT_WITHOUT_LARGE)
     void shouldSortStepwise(final int[] array) {
-        final StepWiseSorter sorter = new InsertionSort(array);
-        while (!sorter.isFinished()) {
-            sorter.step();
-        }
+        sortStepwise(array);
         assertThat(array).isSorted();
     }
 
     @ParameterizedTest
     @MethodSource(PROVIDE_ARRAYS_TO_NOT_THROW)
     void shouldNotThrowStepwise(final int[] array) {
-        assertThatCode(() -> {
-            final StepWiseSorter sorter = new InsertionSort(array);
-            while (!sorter.isFinished()) {
-                sorter.step();
-            }
-        }).doesNotThrowAnyException();
+        assertThatCode(() -> sortStepwise(array)).doesNotThrowAnyException();
+    }
+
+    private static void sortStepwise(final int[] array) {
+        final StepWiseSorter sorter = new InsertionSort(array);
+        do {
+            sorter.step();
+        } while (!sorter.isFinished());
     }
 
 }
