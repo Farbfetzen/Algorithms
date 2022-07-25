@@ -35,25 +35,20 @@ public class SortingVisualisation extends PApplet {
         n = array.length;
         columnWidth = (float) CANVAS_WIDTH / n;
         columnHeightMultiplier = (float) (CANVAS_HEIGHT - MARGIN_TOP) / max(array);
-
         stroke(backgroundColor);
-        if (columnWidth < 3) {
-            noStroke();
-        } else {
+        if (columnWidth > 3) {
             strokeWeight(1);
+        } else {
+            noStroke();
         }
         fill(color(25, 215, 240));
     }
 
-
     @Override
     public void draw() {
         if (runAuto) {
-            if (turbo) {
-                for (int i = 0; i < 10; i++) {
-                    algorithm.step();
-                }
-            } else {
+            final var numSteps = turbo ? 10 : 1;
+            for (int i = 0; i < numSteps; i++) {
                 algorithm.step();
             }
         }
@@ -75,8 +70,8 @@ public class SortingVisualisation extends PApplet {
     @Override
     public void keyPressed() {
         switch (key) {
-            case 's' -> algorithm.step();
             case ' ' -> runAuto = !runAuto;
+            case 's' -> algorithm.step();
             case 't' -> turbo = !turbo;
             default -> {/* Key not bound.*/}
         }
