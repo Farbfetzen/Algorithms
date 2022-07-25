@@ -16,8 +16,9 @@ public class SortingVisualisation extends PApplet {
 
     private final int backgroundColor = color(40, 50, 55);
     private final int columnColor = color(25, 215, 240);
-    private final int comparisonColor = color(240, 40, 25);
-    private final int highlightColor = color(20, 220, 20);
+    private final int comparisonColor = color(220, 220, 20);
+    private final int highlightColor = color(240, 100, 20);
+    private final int sortedColor = color(20, 220, 20);
     private int n;
     private float columnWidth;
     private float columnHeightMultiplier;
@@ -56,7 +57,7 @@ public class SortingVisualisation extends PApplet {
         background(backgroundColor);
         for (int i = 0; i < n; i++) {
             if (algorithm.isFinished()) {
-                fill(highlightColor);
+                fill(sortedColor);
             } else if (algorithm.getComparisons().contains(i)) {
                 fill(comparisonColor);
             } else if (algorithm.getHighlights().contains(i)) {
