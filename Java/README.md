@@ -6,6 +6,8 @@
 mvn clean compile exec:java -Dexec.args="'heap sort'"
 ```
 
+Add the argument `-v` to view a visualization.
+
 ## Import Processing dependency with Maven
 
 The maintainers of Processing don't want to publish the jars to a public Maven repository.
