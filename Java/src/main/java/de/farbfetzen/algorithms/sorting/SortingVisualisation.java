@@ -55,10 +55,12 @@ public class SortingVisualisation extends PApplet {
 
         background(backgroundColor);
         for (int i = 0; i < n; i++) {
-            if (algorithm.isFinished() || algorithm.getHighlights().contains(i)) {
+            if (algorithm.isFinished()) {
                 fill(highlightColor);
             } else if (algorithm.getComparisons().contains(i)) {
                 fill(comparisonColor);
+            } else if (algorithm.getHighlights().contains(i)) {
+                fill(highlightColor);
             } else {
                 fill(columnColor);
             }
