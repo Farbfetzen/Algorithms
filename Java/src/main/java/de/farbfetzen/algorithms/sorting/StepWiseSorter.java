@@ -4,6 +4,10 @@ import java.util.Set;
 
 public interface StepWiseSorter {
 
+    interface Constructor {
+        StepWiseSorter construct(int[] array);
+    }
+
     void step();
 
     int[] getArray();

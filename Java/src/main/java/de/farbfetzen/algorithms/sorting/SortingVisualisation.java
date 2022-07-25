@@ -1,12 +1,14 @@
 package de.farbfetzen.algorithms.sorting;
 
-import java.util.Arrays;
-
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import processing.core.PApplet;
 
 @Slf4j
 public class SortingVisualisation extends PApplet {
+
+    @Setter
+    private static StepWiseSorter algorithm;
 
     private static final int CANVAS_WIDTH = 1200;
     private static final int CANVAS_HEIGHT = 800;
@@ -16,7 +18,6 @@ public class SortingVisualisation extends PApplet {
     private final int columnColor = color(25, 215, 240);
     private final int comparisonColor = color(240, 40, 25);
     private final int highlightColor = color(20, 220, 20);
-    private StepWiseSorter algorithm;
     private int n;
     private float columnWidth;
     private float columnHeightMultiplier;
@@ -28,22 +29,8 @@ public class SortingVisualisation extends PApplet {
         size(CANVAS_WIDTH, CANVAS_HEIGHT);
     }
 
-    private void initAlgorithm() {
-        final String className = args[0];
-        final var array = Arrays.stream(args).skip(1).mapToInt(Integer::parseInt).toArray();
-        logger.debug("Found array {}", array);
-        try {
-            final Class<? extends StepWiseSorter> clazz = Class.forName(className).asSubclass(StepWiseSorter.class);
-            algorithm = clazz.getDeclaredConstructor(int[].class).newInstance(array);
-            logger.debug("Found algorithm {}", algorithm);
-        } catch (final ReflectiveOperationException e) {
-            logger.error("Error while trying to construct Algorithm instance.", e);
-        }
-    }
-
     @Override
     public void setup() {
-        initAlgorithm();
         final var array = algorithm.getArray();
         n = array.length;
         columnWidth = (float) CANVAS_WIDTH / n;
