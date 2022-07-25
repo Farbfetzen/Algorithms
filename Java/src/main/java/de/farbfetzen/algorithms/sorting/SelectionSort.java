@@ -16,8 +16,8 @@ public class SelectionSort implements StepWiseSorter {
     @Getter
     private final Set<Integer> comparisons = new HashSet<>();
     private int i;
-    private int maxValueCurrentIndex = 0;
-    private int maxValueSearchIndex = 0;
+    private int maxValueIndex = 0;
+    private int maxValueSearchIndex = 1;
 
     public SelectionSort(final int[] array) {
         this.array = array;
@@ -39,20 +39,22 @@ public class SelectionSort implements StepWiseSorter {
         if (finished) {
             return;
         }
-        if (maxValueSearchIndex < i) {
-            maxValueSearchIndex++;
-            if (array[maxValueSearchIndex] > array[maxValueCurrentIndex]) {
-                maxValueCurrentIndex = maxValueSearchIndex;
+        if (maxValueSearchIndex <= i) {
+            if (array[maxValueSearchIndex] > array[maxValueIndex]) {
+                maxValueIndex = maxValueSearchIndex;
             }
+            maxValueSearchIndex++;
         } else {
-            swap(array, i, maxValueCurrentIndex);
+            swap(array, i, maxValueIndex);
             i--;
-            maxValueCurrentIndex = 0;
-            maxValueSearchIndex = 0;
+            maxValueIndex = 0;
+            maxValueSearchIndex = 1;
         }
         comparisons.clear();
-        comparisons.add(maxValueCurrentIndex);
-        comparisons.add(maxValueSearchIndex);
+        if (maxValueSearchIndex <= i) {
+            comparisons.add(maxValueSearchIndex);
+        }
+        comparisons.add(maxValueIndex);
         checkIfFinished();
     }
 
