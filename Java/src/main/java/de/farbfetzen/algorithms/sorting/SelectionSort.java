@@ -1,33 +1,19 @@
 package de.farbfetzen.algorithms.sorting;
 
-import java.util.HashSet;
 import java.util.Set;
-
-import lombok.Getter;
 
 import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
 
-class SelectionSort implements StepWiseSorter {
+class SelectionSort extends StepWiseSorter {
 
-    @Getter
-    private final int[] array;
-    @Getter
-    private boolean finished = false;
-    @Getter
-    private final Set<Integer> comparisons = new HashSet<>();
     private int i;
     private int maxValueIndex = 0;
     private int maxValueSearchIndex = 1;
 
-    public SelectionSort(final int[] array) {
-        this.array = array;
+    SelectionSort(final int[] array) {
+        super(array);
         i = array.length - 1;
         checkIfFinished();
-    }
-
-    @Override
-    public Set<Integer> getHighlights() {
-        return Set.of(i);
     }
 
     private void checkIfFinished() {
@@ -55,6 +41,7 @@ class SelectionSort implements StepWiseSorter {
             comparisons.add(maxValueSearchIndex);
         }
         comparisons.add(maxValueIndex);
+        highlights = Set.of(i);
         checkIfFinished();
     }
 

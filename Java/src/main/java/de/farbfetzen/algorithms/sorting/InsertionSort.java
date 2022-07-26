@@ -1,23 +1,14 @@
 package de.farbfetzen.algorithms.sorting;
 
-import java.util.HashSet;
 import java.util.Set;
 
-import lombok.Getter;
+class InsertionSort extends StepWiseSorter {
 
-class InsertionSort implements StepWiseSorter {
-
-    @Getter
-    private final int[] array;
     private int i = 0;
     private int j = i - 1;
-    @Getter
-    private final Set<Integer> comparisons = new HashSet<>();
-    @Getter
-    private boolean finished = false;
 
-    public InsertionSort(final int[] array) {
-        this.array = array;
+    InsertionSort(final int[] array) {
+        super(array);
     }
 
     private void checkIfFinished() {
@@ -25,10 +16,6 @@ class InsertionSort implements StepWiseSorter {
     }
 
     @Override
-    public Set<Integer> getHighlights() {
-        return Set.of(i);
-    }
-
     public void step() {
         if (finished) {
             return;
@@ -46,6 +33,7 @@ class InsertionSort implements StepWiseSorter {
         comparisons.clear();
         comparisons.add(j);
         comparisons.add(k);
+        highlights = Set.of(i);
         checkIfFinished();
     }
 

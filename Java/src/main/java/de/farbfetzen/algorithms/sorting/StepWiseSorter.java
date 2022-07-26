@@ -1,21 +1,25 @@
 package de.farbfetzen.algorithms.sorting;
 
+import java.util.HashSet;
 import java.util.Set;
 
-interface StepWiseSorter {
+import lombok.Getter;
 
-    interface Constructor {
-        StepWiseSorter construct(int[] array);
+abstract class StepWiseSorter {
+
+    @Getter
+    protected final int[] array;
+    @Getter
+    protected boolean finished = false;
+    @Getter
+    protected Set<Integer> highlights = new HashSet<>();
+    @Getter
+    protected Set<Integer> comparisons = new HashSet<>();
+
+    StepWiseSorter(final int[] array) {
+        this.array = array;
     }
 
-    void step();
-
-    int[] getArray();
-
-    boolean isFinished();
-
-    Set<Integer> getComparisons();
-
-    Set<Integer> getHighlights();
+    abstract void step();
 
 }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,7 +28,7 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
 
         final String name;
         final Consumer<int[]> sortMethod;
-        final StepWiseSorter.Constructor constructor;
+        final Function<int[], StepWiseSorter> constructor;
 
         static SortAlgo getByName(final String name) {
             return Arrays.stream(values()).filter(v -> v.name.equals(name)).findFirst().orElseThrow();
@@ -70,7 +71,7 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
         logger.info("Starting visualization");
         final var elements = IntStream.rangeClosed(1, 100).toArray();
         ArrayUtils.shuffle(elements);
-        final var algorithm = sortAlgo.constructor.construct(elements);
+        final var algorithm = sortAlgo.constructor.apply(elements);
         SortingVisualisation.setAlgorithm(algorithm);
         PApplet.main(SortingVisualisation.class);
     }

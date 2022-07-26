@@ -1,29 +1,18 @@
 package de.farbfetzen.algorithms.sorting;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
 
 @Slf4j
-class HeapSort implements StepWiseSorter {
+class HeapSort extends StepWiseSorter {
 
     private static final Set<Integer> CLEAR = Set.of();
-
-    @Getter
-    private final int[] array;
-    @Getter
-    private Set<Integer> highlights = new HashSet<>();
-    @Getter
-    private Set<Integer> comparisons = new HashSet<>();
-    @Getter
-    private boolean finished = false;
     private final List<Step> steps = new ArrayList<>();
     private final Iterator<Step> stepIterator;
 
@@ -37,12 +26,13 @@ class HeapSort implements StepWiseSorter {
     @SuppressWarnings("squid:S6218")
     private record Step(int[] swap, Set<Integer> comparisons, Set<Integer> highlights) {}
 
-    public HeapSort(final int[] array) {
-        this.array = array;
+    HeapSort(final int[] array) {
+        super(array);
         sortAndRecord(array.clone());
         stepIterator = steps.iterator();
     }
 
+    @Override
     public void step() {
         if (stepIterator.hasNext()) {
             final var step = stepIterator.next();
