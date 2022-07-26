@@ -7,7 +7,7 @@ import lombok.Getter;
 
 import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
 
-public class SelectionSort implements StepWiseSorter {
+class SelectionSort implements StepWiseSorter {
 
     @Getter
     private final int[] array;

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import lombok.Getter;
 
-public class InsertionSort implements StepWiseSorter {
+class InsertionSort implements StepWiseSorter {
 
     @Getter
     private final int[] array;

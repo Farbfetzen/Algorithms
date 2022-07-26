@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
 
 @Slf4j
-public class HeapSort implements StepWiseSorter {
+class HeapSort implements StepWiseSorter {
 
     private static final Set<Integer> CLEAR = Set.of();
 

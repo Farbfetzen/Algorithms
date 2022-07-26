@@ -2,7 +2,7 @@ package de.farbfetzen.algorithms.sorting;
 
 import java.util.Set;
 
-public interface StepWiseSorter {
+interface StepWiseSorter {
 
     interface Constructor {
         StepWiseSorter construct(int[] array);
