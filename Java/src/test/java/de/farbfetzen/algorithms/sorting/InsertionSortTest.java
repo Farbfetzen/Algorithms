@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_NOT_THROW;
 import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_SORT;
 import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_SORT_WITHOUT_LARGE;
+import static de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.sortStepwise;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -27,21 +28,14 @@ class InsertionSortTest {
     @ParameterizedTest
     @MethodSource(PROVIDE_ARRAYS_TO_SORT_WITHOUT_LARGE)
     void shouldSortStepwise(final int[] array) {
-        sortStepwise(array);
+        sortStepwise(new InsertionSort(array));
         assertThat(array).isSorted();
     }
 
     @ParameterizedTest
     @MethodSource(PROVIDE_ARRAYS_TO_NOT_THROW)
     void shouldNotThrowStepwise(final int[] array) {
-        assertThatCode(() -> sortStepwise(array)).doesNotThrowAnyException();
-    }
-
-    private static void sortStepwise(final int[] array) {
-        final StepWiseSorter sorter = new InsertionSort(array);
-        do {
-            sorter.step();
-        } while (!sorter.isFinished());
+        assertThatCode(() -> sortStepwise(new InsertionSort(array))).doesNotThrowAnyException();
     }
 
 }
