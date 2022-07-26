@@ -69,4 +69,10 @@ class SortingAlgorithmTestUtil {
         );
     }
 
+    static void sortStepwise(final StepWiseSorter sorter) {
+        do {
+            sorter.step();
+        } while (!sorter.isFinished());
+    }
+
 }

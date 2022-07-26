@@ -23,7 +23,7 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
     enum SortAlgo {
         INSERTION_SORT("insertion sort", InsertionSort::sort, InsertionSort::new),
         SELECTION_SORT("selection sort", SelectionSort::sort, SelectionSort::new),
-        HEAP_SORT("heap sort", HeapSort::sort, null);
+        HEAP_SORT("heap sort", HeapSort::sort, HeapSort::new);
 
         final String name;
         final Consumer<int[]> sortMethod;
