@@ -48,7 +48,7 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
         // TODO: Proper argument parsing.
         logger.info("Running {}", algorithmName);
         final var sortAlgo = SortAlgo.getByName(algorithmName);
-        if ("-v".equals(args[1])) {
+        if (args.length > 1 && "-v".equals(args[1])) {
             visualize(sortAlgo);
         } else {
             run(sortAlgo);
