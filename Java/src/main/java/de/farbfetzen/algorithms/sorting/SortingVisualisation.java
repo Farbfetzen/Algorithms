@@ -15,7 +15,7 @@ public class SortingVisualisation extends PApplet {
     private static final int MARGIN_TOP = 50;
 
     private final int backgroundColor = color(40, 50, 55);
-    private final int columnColor = color(25, 215, 240);
+    private final int columnColor = color(170, 230, 240);
     private final int comparisonColor = color(220, 220, 20);
     private final int highlightColor = color(240, 100, 20);
     private final int sortedColor = color(20, 220, 20);
