@@ -1,0 +1,14 @@
+# documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+
+  - package-ecosystem: "maven"
+    directory: "/Java"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "Farbfetzen"
+    labels:
+      - "dependencies"
