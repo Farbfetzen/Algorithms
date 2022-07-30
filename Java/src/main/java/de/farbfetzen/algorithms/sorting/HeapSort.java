@@ -33,7 +33,7 @@ class HeapSort extends StepWiseSorter {
     }
 
     @Override
-    public void step() {
+    void step() {
         if (stepIterator.hasNext()) {
             final var step = stepIterator.next();
             if (step.swap != null) {
@@ -94,7 +94,7 @@ class HeapSort extends StepWiseSorter {
      *
      * @param array the array to sort
      */
-    public static void sort(final int[] array) {
+    static void sort(final int[] array) {
         buildHeap(array);
         for (int i = array.length - 1; i >= 1; i--) {
             swap(array, 0, i);

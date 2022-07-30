@@ -16,7 +16,7 @@ class InsertionSort extends StepWiseSorter {
     }
 
     @Override
-    public void step() {
+    void step() {
         if (finished) {
             return;
         }
@@ -42,7 +42,7 @@ class InsertionSort extends StepWiseSorter {
      *
      * @param array the array to sort
      */
-    public static void sort(final int[] array) {
+    static void sort(final int[] array) {
         for (int i = 0; i < array.length; i++) {
             var j = i - 1;
             final var current = array[i];

@@ -21,7 +21,7 @@ class SelectionSort extends StepWiseSorter {
     }
 
     @Override
-    public void step() {
+    void step() {
         if (finished) {
             return;
         }
@@ -50,7 +50,7 @@ class SelectionSort extends StepWiseSorter {
      *
      * @param array the array to sort
      */
-    public static void sort(final int[] array) {
+    static void sort(final int[] array) {
         for (int i = array.length - 1; i > 0; i--) {
             swap(array, i, findIndexOfMaxValue(array, i));
         }
