@@ -8,7 +8,7 @@ import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
 class HeapSort extends StepWiseSorter {
 
     HeapSort(final int[] array) {
-        super(array, true);
+        super(array);
     }
 
     @Override

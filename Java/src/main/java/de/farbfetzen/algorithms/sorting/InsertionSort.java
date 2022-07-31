@@ -1,40 +1,26 @@
 package de.farbfetzen.algorithms.sorting;
 
-import java.util.Set;
-
 class InsertionSort extends StepWiseSorter {
 
-    private int i = 0;
-    private int j = i - 1;
-
     InsertionSort(final int[] array) {
-        super(array, false);
-    }
-
-    private void checkIfFinished() {
-        finished = i >= array.length;
+        super(array);
     }
 
     @Override
-    void step() {
-        if (finished) {
-            return;
+    protected void sortAndRecord(final int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            var j = i - 1;
+            final var currentValue = array[i];
+            steps.add(new SortStepBuilder().highlight(i).clearComparisons().build());
+            for (; j >= 0; j--) {
+                steps.add(new SortStepBuilder().compare(j, j + 1).highlight(i).build());
+                if (array[j] > currentValue) {
+                    steps.add(new SortStepBuilder().swap(array, j, j + 1).build());
+                } else {
+                    break;
+                }
+            }
         }
-        var k = j + 1;
-        if (j >= 0 && array[j] > array[k]) {
-            SortingUtils.swap(array, j, k);
-            j--;
-            k--;
-        } else {
-            i++;
-            j = i - 1;
-            k = i;
-        }
-        comparisons.clear();
-        comparisons.add(j);
-        comparisons.add(k);
-        highlights = Set.of(i);
-        checkIfFinished();
     }
 
     /**

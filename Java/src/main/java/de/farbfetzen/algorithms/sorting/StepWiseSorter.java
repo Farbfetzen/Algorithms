@@ -19,11 +19,11 @@ abstract class StepWiseSorter {
     @Getter
     protected Set<Integer> comparisons = new HashSet<>();
     protected final List<SortStep> steps = new ArrayList<>();
-    private Iterator<SortStep> stepIterator;
+    private final Iterator<SortStep> stepIterator;
 
     /**
      * One step that was performed and recorded during the sorting of the array.
-     * Some visualizations work by recording and then replaying these steps.
+     * The visualizations work by recording and then replaying these steps.
      *
      * @param swap        the swapped indices or null if no swap happened
      * @param comparisons the compared indices or null if nothing was compared
@@ -32,15 +32,13 @@ abstract class StepWiseSorter {
     @SuppressWarnings("squid:S6218")
     private record SortStep(int[] swap, Set<Integer> comparisons, Set<Integer> highlights) {}
 
-    StepWiseSorter(final int[] array, final boolean recordSteps) {
+    StepWiseSorter(final int[] array) {
         this.array = array;
-        if (recordSteps) {
-            sortAndRecord(array.clone());
-            stepIterator = steps.iterator();
-        }
+        sortAndRecord(array.clone());
+        stepIterator = steps.iterator();
     }
 
-    protected void sortAndRecord(final int[] array) {}
+    protected abstract void sortAndRecord(final int[] array);
 
     void step() {
         if (stepIterator.hasNext()) {
@@ -60,6 +58,7 @@ abstract class StepWiseSorter {
     }
 
     protected static class SortStepBuilder {
+
         private int[] swap;
         private Set<Integer> comparisons;
         private Set<Integer> highlights;
@@ -105,6 +104,7 @@ abstract class StepWiseSorter {
         SortStep build() {
             return new SortStep(swap, comparisons, highlights);
         }
+
     }
 
 }

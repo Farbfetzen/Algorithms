@@ -6,7 +6,7 @@ import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
 class QuickSort extends StepWiseSorter {
 
     QuickSort(final int[] array) {
-        super(array, true);
+        super(array);
     }
 
     @Override
