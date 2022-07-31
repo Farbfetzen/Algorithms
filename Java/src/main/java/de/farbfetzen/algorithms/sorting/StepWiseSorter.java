@@ -64,7 +64,11 @@ abstract class StepWiseSorter {
         private Set<Integer> comparisons;
         private Set<Integer> highlights;
 
-        SortStepBuilder swap(final int i, final int j) {
+        /**
+         * Swap the values at the given indices and record that step.
+         */
+        SortStepBuilder swap(final int[] array, final int i, final int j) {
+            SortingUtils.swap(array, i, j);
             swap = new int[]{i, j};
             return this;
         }

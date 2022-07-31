@@ -29,27 +29,23 @@ class QuickSort extends StepWiseSorter {
             final var rightValue = array[rightIndex];
             steps.add(new SortStepBuilder().compare(leftIndex, rightIndex).build());
             if (leftValue > rightValue ) {
-                swap(array, leftIndex, rightIndex);
-                steps.add(new SortStepBuilder().swap(leftIndex, rightIndex).build());
+                steps.add(new SortStepBuilder().swap(array, leftIndex, rightIndex).build());
             }
             return leftIndex;
         }
         final var pivotIndex = (leftIndex + rightIndex) / 2;
         steps.add(new SortStepBuilder().highlight(pivotIndex).clearComparisons().build());
         final var pivotValue = array[pivotIndex];
-        swap(array, pivotIndex, rightIndex);
-        steps.add(new SortStepBuilder().swap(pivotIndex, rightIndex).highlight(rightIndex).build());
+        steps.add(new SortStepBuilder().swap(array, pivotIndex, rightIndex).highlight(rightIndex).build());
         var storeIndex = leftIndex;
         for (int i = leftIndex; i < rightIndex; i++) {
             steps.add(new SortStepBuilder().compare(i, rightIndex).build());
             if (array[i] <= pivotValue) {
-                steps.add(new SortStepBuilder().swap(i, storeIndex).highlight(storeIndex + 1).build());
-                swap(array, i, storeIndex);
+                steps.add(new SortStepBuilder().swap(array, i, storeIndex).highlight(storeIndex + 1).build());
                 storeIndex++;
             }
         }
-        swap(array, rightIndex, storeIndex);
-        steps.add(new SortStepBuilder().swap(rightIndex, storeIndex).build());
+        steps.add(new SortStepBuilder().swap(array, rightIndex, storeIndex).build());
         return storeIndex;
     }
 

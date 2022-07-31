@@ -15,8 +15,7 @@ class HeapSort extends StepWiseSorter {
     protected void sortAndRecord(final int[] array) {
         buildHeapAndRecord(array);
         for (int i = array.length - 1; i >= 1; i--) {
-            steps.add(new SortStepBuilder().swap(0, i).highlight(i).build());
-            swap(array, 0, i);
+            steps.add(new SortStepBuilder().swap(array, 0, i).highlight(i).build());
             heapifyAndRecord(array, 0, i);
         }
     }
@@ -45,8 +44,7 @@ class HeapSort extends StepWiseSorter {
             }
         }
         if (largest != i) {
-            steps.add(new SortStepBuilder().swap(largest, i).clearComparisons().build());
-            swap(array, largest, i);
+            steps.add(new SortStepBuilder().swap(array, largest, i).clearComparisons().build());
             heapifyAndRecord(array, largest, upperBound);
         }
     }
