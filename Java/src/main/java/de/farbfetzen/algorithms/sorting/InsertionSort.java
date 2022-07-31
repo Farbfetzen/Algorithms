@@ -8,7 +8,7 @@ class InsertionSort extends StepWiseSorter {
     private int j = i - 1;
 
     InsertionSort(final int[] array) {
-        super(array);
+        super(array, false);
     }
 
     private void checkIfFinished() {

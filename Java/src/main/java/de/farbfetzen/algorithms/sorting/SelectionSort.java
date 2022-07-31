@@ -11,7 +11,7 @@ class SelectionSort extends StepWiseSorter {
     private int maxValueSearchIndex = 1;
 
     SelectionSort(final int[] array) {
-        super(array);
+        super(array, false);
         i = array.length - 1;
         checkIfFinished();
     }
