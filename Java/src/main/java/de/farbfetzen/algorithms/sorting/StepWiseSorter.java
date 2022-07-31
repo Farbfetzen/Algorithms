@@ -69,6 +69,9 @@ abstract class StepWiseSorter {
             return this;
         }
 
+        /**
+         * Record when value are compared, not indices.
+         */
         SortStepBuilder compare(final int... indices) {
             comparisons = new HashSet<>();
             for (final var i : indices) {

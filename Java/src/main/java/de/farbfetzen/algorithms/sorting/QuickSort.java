@@ -15,7 +15,6 @@ class QuickSort extends StepWiseSorter {
     }
 
     private void quickSortAndRecord(final int[] array, final int leftIndex, final int rightIndex) {
-        steps.add(new SortStepBuilder().compare(leftIndex, rightIndex).build());
         if (leftIndex < rightIndex) {
             final var pivotIndex = partitionAndRecord(array, leftIndex, rightIndex);
             quickSortAndRecord(array, leftIndex, pivotIndex - 1);
