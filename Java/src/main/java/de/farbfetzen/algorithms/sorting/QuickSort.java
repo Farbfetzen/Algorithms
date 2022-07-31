@@ -23,8 +23,19 @@ class QuickSort extends StepWiseSorter {
     }
 
     private int partitionAndRecord(final int[] array, final int leftIndex, final int rightIndex) {
-        final var pivotIndex = rightIndex - leftIndex > 2? (rightIndex + leftIndex) / 2 : leftIndex;
-        steps.add(new SortStepBuilder().highlight(pivotIndex).build());
+        // If there are only two values then sort them immediately.
+        if (rightIndex - leftIndex < 2) {
+            final var leftValue = array[leftIndex];
+            final var rightValue = array[rightIndex];
+            steps.add(new SortStepBuilder().compare(leftIndex, rightIndex).build());
+            if (leftValue > rightValue ) {
+                swap(array, leftIndex, rightIndex);
+                steps.add(new SortStepBuilder().swap(leftIndex, rightIndex).build());
+            }
+            return leftIndex;
+        }
+        final var pivotIndex = (leftIndex + rightIndex) / 2;
+        steps.add(new SortStepBuilder().highlight(pivotIndex).clearComparisons().build());
         final var pivotValue = array[pivotIndex];
         swap(array, pivotIndex, rightIndex);
         steps.add(new SortStepBuilder().swap(pivotIndex, rightIndex).highlight(rightIndex).build());
