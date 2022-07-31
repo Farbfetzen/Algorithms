@@ -32,9 +32,8 @@ class InsertionSort extends StepWiseSorter {
         for (int i = 0; i < array.length; i++) {
             var j = i - 1;
             final var current = array[i];
-            while (j >= 0 && array[j] > current) {
+            for (; j >= 0 && array[j] > current; j--) {
                 array[j + 1] = array[j];
-                j--;
             }
             array[j + 1] = current;
         }
