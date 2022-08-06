@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.processing</groupId>
             <artifactId>core</artifactId>
-            <version>4.0b8</version>
+            <version>4.0b9</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
