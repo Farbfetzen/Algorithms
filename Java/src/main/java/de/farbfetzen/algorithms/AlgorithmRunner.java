@@ -1,9 +1,11 @@
 package de.farbfetzen.algorithms;
 
+import java.util.List;
+
 public interface AlgorithmRunner {
 
-    boolean hasAlgorithm(String algorithmName);
+    boolean init(String algorithmName, List<String> args);
 
-    void run(String algorithmName, String[] args);
+    void run();
 
 }

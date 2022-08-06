@@ -1,11 +1,11 @@
 package de.farbfetzen.algorithms.sorting;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +19,10 @@ import de.farbfetzen.algorithms.AlgorithmRunner;
 public class SortingAlgorithmRunner implements AlgorithmRunner {
 
     private static final Random random = new Random();
+    private boolean visualize = false;
+    private int numberOfElements = 10;
+    private String algorithmName;
+    private SortAlgo sortAlgo;
 
     @RequiredArgsConstructor
     enum SortAlgo {
@@ -31,46 +35,60 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
         final Consumer<int[]> sortMethod;
         final Function<int[], StepWiseSorter> constructor;
 
-        static SortAlgo getByName(final String name) {
-            return Arrays.stream(values()).filter(v -> v.name.equals(name)).findFirst().orElseThrow();
+        static Optional<SortAlgo> getByName(final String name) {
+            return Arrays.stream(values()).filter(v -> v.name.equals(name)).findFirst();
         }
     }
 
-    private static final Set<String> algorithmNames = Arrays
-            .stream(SortAlgo.values())
-            .map(v -> v.name)
-            .collect(Collectors.toSet());
-
     @Override
-    public boolean hasAlgorithm(final String algorithmName) {
-        return algorithmNames.contains(algorithmName);
+    @SuppressWarnings("squid:S127")
+    public boolean init(final String algorithmName, final List<String> args) {
+        final Optional<SortAlgo> maybeAlgo = SortAlgo.getByName(algorithmName);
+        if (maybeAlgo.isEmpty()) {
+            return false;
+        }
+        sortAlgo = maybeAlgo.get();
+        this.algorithmName = algorithmName;
+        for (int i = 0; i < args.size(); i++) {
+            final var arg = args.get(i);
+            if ("-v".equals(arg)) {
+                visualize = true;
+            } else if ("-n".equals(arg)) {
+                try {
+                    numberOfElements = Integer.parseInt(args.get(++i));
+                } catch (final IndexOutOfBoundsException | NumberFormatException e) {
+                    throw new IllegalArgumentException("The argument '-n' must be followed by an integer.");
+                }
+            } else {
+                throw new IllegalArgumentException("Unknown argument '" + arg + "'.");
+            }
+        }
+        return true;
     }
 
-    public void run(final String algorithmName, final String[] args) {
-        // TODO: Proper argument parsing.
-        logger.info("Running {}", algorithmName);
-        final var sortAlgo = SortAlgo.getByName(algorithmName);
-        if (args.length > 1 && "-v".equals(args[1])) {
+    public void run() {
+        logger.info("Running {} with {} elements.", algorithmName, numberOfElements);
+        if (visualize) {
             visualize(sortAlgo);
         } else {
             run(sortAlgo);
         }
     }
 
-    private static void run(final SortAlgo sortAlgo) {
-        final var elements = random.ints(10, 0, 100).toArray();
+    private void run(final SortAlgo sortAlgo) {
+        final var elements = random.ints(numberOfElements, 0, 100).toArray();
         logger.info("Original: {}", elements);
         sortAlgo.sortMethod.accept(elements);
         logger.info("Sorted:   {}", elements);
     }
 
-    private static void visualize(final SortAlgo sortAlgo) {
+    private void visualize(final SortAlgo sortAlgo) {
         if (sortAlgo.constructor == null) {
             logger.error("Algorithm '{}' does not have a visualization.", sortAlgo.name);
             return;
         }
         logger.info("Starting visualization");
-        final var elements = IntStream.rangeClosed(1, 100).toArray();
+        final var elements = IntStream.rangeClosed(1, numberOfElements).toArray();
         ArrayUtils.shuffle(elements);
         final var algorithm = sortAlgo.constructor.apply(elements);
         SortingVisualisation.setAlgorithm(algorithm);
