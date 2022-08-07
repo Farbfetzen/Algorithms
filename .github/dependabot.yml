@@ -7,8 +7,8 @@ updates:
   - package-ecosystem: "maven"
     directory: "/Java"
     schedule:
-      interval: "weekly"
-    assignees:
+      interval: "daily"
+    reviewers:
       - "Farbfetzen"
     labels:
       - "dependencies"
