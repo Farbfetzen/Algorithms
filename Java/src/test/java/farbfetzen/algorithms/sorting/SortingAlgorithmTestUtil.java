@@ -1,4 +1,4 @@
-package de.farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting;
 
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 @UtilityClass
 class SortingAlgorithmTestUtil {
 
-    public static final String CLASS_NAME = "de.farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil#";
+    public static final String CLASS_NAME = "farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil#";
     public static final String PROVIDE_ARRAYS_TO_SORT = CLASS_NAME + "provideArraysToSort";
     public static final String PROVIDE_ARRAYS_TO_NOT_THROW = CLASS_NAME + "provideArraysToNotThrow";
     public static final String PROVIDE_ARRAYS_TO_SORT_WITHOUT_LARGE = CLASS_NAME + "provideArraysToSortWithoutLarge";

@@ -1,4 +1,4 @@
-package de.farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting;
 
 import java.util.ArrayList;
 import java.util.HashSet;

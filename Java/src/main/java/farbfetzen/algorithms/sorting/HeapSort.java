@@ -1,8 +1,8 @@
-package de.farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
+import static farbfetzen.algorithms.sorting.SortingUtils.swap;
 
 @Slf4j
 class HeapSort extends StepWiseSorter {

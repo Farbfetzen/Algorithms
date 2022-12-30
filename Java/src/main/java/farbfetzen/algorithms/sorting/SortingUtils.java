@@ -1,4 +1,4 @@
-package de.farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting;
 
 import lombok.experimental.UtilityClass;
 

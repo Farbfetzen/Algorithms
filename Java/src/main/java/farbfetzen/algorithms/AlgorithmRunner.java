@@ -1,4 +1,4 @@
-package de.farbfetzen.algorithms;
+package farbfetzen.algorithms;
 
 import java.util.List;
 

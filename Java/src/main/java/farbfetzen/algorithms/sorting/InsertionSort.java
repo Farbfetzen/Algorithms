@@ -1,4 +1,4 @@
-package de.farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting;
 
 class InsertionSort extends StepWiseSorter {
 

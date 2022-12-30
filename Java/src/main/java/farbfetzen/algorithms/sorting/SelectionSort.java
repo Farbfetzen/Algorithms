@@ -1,6 +1,6 @@
-package de.farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting;
 
-import static de.farbfetzen.algorithms.sorting.SortingUtils.swap;
+import static farbfetzen.algorithms.sorting.SortingUtils.swap;
 
 class SelectionSort extends StepWiseSorter {
 

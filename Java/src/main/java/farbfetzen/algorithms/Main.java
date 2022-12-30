@@ -1,4 +1,4 @@
-package de.farbfetzen.algorithms;
+package farbfetzen.algorithms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,12 +6,13 @@ import java.util.Locale;
 
 import lombok.extern.slf4j.Slf4j;
 
-import de.farbfetzen.algorithms.sorting.SortingAlgorithmRunner;
+import farbfetzen.algorithms.geometry.GeometryAlgorithmRunner;
+import farbfetzen.algorithms.sorting.SortingAlgorithmRunner;
 
 @Slf4j
 public class Main {
 
-    private static final AlgorithmRunner[] runners = {new SortingAlgorithmRunner()};
+    private static final AlgorithmRunner[] runners = {new GeometryAlgorithmRunner(), new SortingAlgorithmRunner()};
 
     public static void main(final String[] arguments) {
         final var args = new ArrayList<>(Arrays.asList(arguments));
