@@ -5,24 +5,29 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import farbfetzen.algorithms.AlgorithmRunner;
 import farbfetzen.algorithms.util.Vector2;
 
-@Slf4j
 public class GeometryAlgorithmRunner implements AlgorithmRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(GeometryAlgorithmRunner.class);
 
     private String algorithmName;
     private GeoAlgo geoAlgo;
 
-    @RequiredArgsConstructor
     enum GeoAlgo {
         CONVEX_HULL("convex hull", ConvexHull::new);
 
         final String name;
         final Function<Vector2[], ConvexHull> constructor;
+
+        GeoAlgo(final String name, final Function<Vector2[], ConvexHull> constructor) {
+            this.name = name;
+            this.constructor = constructor;
+        }
 
         static Optional<GeoAlgo> getByName(final String name) {
             return Arrays.stream(values()).filter(v -> v.name.equals(name)).findFirst();

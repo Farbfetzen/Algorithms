@@ -1,17 +1,15 @@
 package farbfetzen.algorithms.sorting;
 
+import static org.junit.jupiter.api.Named.named;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.params.provider.Arguments;
 
-import static org.junit.jupiter.api.Named.named;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-
-@UtilityClass
 class SortingAlgorithmTestUtil {
 
     public static final String CLASS_NAME = "farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil#";

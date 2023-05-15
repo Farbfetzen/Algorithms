@@ -9,14 +9,16 @@ import java.util.function.Function;
 import java.util.stream.IntStream;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import processing.core.PApplet;
 
 import farbfetzen.algorithms.AlgorithmRunner;
 
-@Slf4j
 public class SortingAlgorithmRunner implements AlgorithmRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(SortingAlgorithmRunner.class);
 
     private static final Random random = new Random();
     private boolean visualize = false;
