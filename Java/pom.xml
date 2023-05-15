@@ -4,120 +4,63 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>farbfetzen</groupId>
+    <parent>
+        <!-- https://github.com/Farbfetzen/farbfetzen-parent -->
+        <groupId>farbfetzen</groupId>
+        <artifactId>parent</artifactId>
+        <version>2</version>
+    </parent>
+
     <artifactId>algorithms</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>Algorithms</name>
     <description>Various algorithms implemented in Java</description>
     <url>https://github.com/Farbfetzen/Algorithms</url>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Farbfetzen/Algorithms/issues</url>
+    </issueManagement>
     <licenses>
         <license>
             <name>MIT</name>
             <url>https://opensource.org/licenses/MIT</url>
-            <distribution>repo</distribution>
         </license>
     </licenses>
 
     <properties>
-        <maven.compiler.release>18</maven.compiler.release>
         <mainClass>farbfetzen.algorithms.Main</mainClass>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
         </dependency>
         <dependency>
             <groupId>org.processing</groupId>
             <artifactId>core</artifactId>
-            <version>4.0b9</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.23.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.2.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>enforce</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <banDuplicatePomDependencyVersions/>
-                                <requireJavaVersion>
-                                    <version>${maven.compiler.release}</version>
-                                </requireJavaVersion>
-                                <requireMavenVersion>
-                                    <version>3.8.6</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <mainClass>${mainClass}</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
