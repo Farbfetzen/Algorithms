@@ -2,8 +2,9 @@
 
 ## Usage
 
-```text
-mvn clean compile exec:java -Dexec.args="'heap sort'"
+```bash
+mvn clean compile
+mvn exec:java -Dexec.args="'heap sort'"
 ```
 
 Add the argument `-v` to view a visualization.
@@ -14,7 +15,7 @@ The maintainers of Processing don't want to publish the jars to a public Maven r
 You can still install the `core.jar` into your local Maven repository
 by downloading Processing from <https://processing.org> and using `mvn install:install-file`.
 
-```text
-# Example with core.jar version 4.0b8 in the current directory:
-mvn install:install-file -Dfile=core.jar -DgroupId=org.processing -DartifactId=core -Dversion=4.0b8 -Dpackaging=jar -DgeneratePom=true
+```bash
+# Example with core.jar in the current directory. Make sure to specify the correct version!
+mvn install:install-file -Dfile=core.jar -DgroupId=org.processing -DartifactId=core -Dversion=<version> -Dpackaging=jar -DgeneratePom=true
 ```
