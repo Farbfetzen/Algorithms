@@ -2,7 +2,6 @@ package farbfetzen.algorithms.sorting;
 
 import static farbfetzen.algorithms.sorting.SortingUtils.swap;
 
-
 class QuickSort extends StepWiseSorter {
 
     QuickSort(final int[] array) {
@@ -28,7 +27,7 @@ class QuickSort extends StepWiseSorter {
             final var leftValue = array[leftIndex];
             final var rightValue = array[rightIndex];
             steps.add(new SortStepBuilder().compare(leftIndex, rightIndex).build());
-            if (leftValue > rightValue ) {
+            if (leftValue > rightValue) {
                 steps.add(new SortStepBuilder().swap(array, leftIndex, rightIndex).build());
             }
             return leftIndex;
@@ -67,7 +66,7 @@ class QuickSort extends StepWiseSorter {
     }
 
     private static int partition(final int[] array, final int leftIndex, final int rightIndex) {
-        final var pivotIndex = rightIndex - leftIndex > 2? (rightIndex + leftIndex) / 2 : leftIndex;
+        final var pivotIndex = rightIndex - leftIndex > 2 ? (rightIndex + leftIndex) / 2 : leftIndex;
         final var pivotValue = array[pivotIndex];
         swap(array, pivotIndex, rightIndex);
         var storeIndex = leftIndex;

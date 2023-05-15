@@ -8,7 +8,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,6 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
     private String algorithmName;
     private SortAlgo sortAlgo;
 
-    @RequiredArgsConstructor
     enum SortAlgo {
         INSERTION_SORT("insertion sort", InsertionSort::sort, InsertionSort::new),
         SELECTION_SORT("selection sort", SelectionSort::sort, SelectionSort::new),
@@ -36,6 +34,16 @@ public class SortingAlgorithmRunner implements AlgorithmRunner {
         final String name;
         final Consumer<int[]> sortMethod;
         final Function<int[], StepWiseSorter> constructor;
+
+        SortAlgo(
+                final String name,
+                final Consumer<int[]> sortMethod,
+                final Function<int[], StepWiseSorter> constructor
+        ) {
+            this.name = name;
+            this.sortMethod = sortMethod;
+            this.constructor = constructor;
+        }
 
         static Optional<SortAlgo> getByName(final String name) {
             return Arrays.stream(values()).filter(v -> v.name.equals(name)).findFirst();

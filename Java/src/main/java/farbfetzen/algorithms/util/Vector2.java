@@ -1,16 +1,53 @@
 package farbfetzen.algorithms.util;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Objects;
 
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
 public class Vector2 implements Comparable<Vector2> {
 
     private double x;
     private double y;
+
+    public Vector2(){
+        this.x = 0;
+        this.y = 0;
+    }
+
+    public Vector2(final double x, final double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(final double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(final double y) {
+        this.y = y;
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof final Vector2 otherVector) {
+            return Double.compare(x, otherVector.x) == 0 && Double.compare(y, otherVector.y) == 0;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
 
     /**
      * Sort Vectors in ascending order. First sort by x and break ties by sorting y.

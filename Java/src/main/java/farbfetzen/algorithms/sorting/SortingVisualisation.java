@@ -1,13 +1,9 @@
 package farbfetzen.algorithms.sorting;
 
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import processing.core.PApplet;
 
-@Slf4j
 public class SortingVisualisation extends PApplet {
 
-    @Setter
     private static StepWiseSorter algorithm;
 
     private static final int CANVAS_WIDTH = 1200;
@@ -78,6 +74,10 @@ public class SortingVisualisation extends PApplet {
             case 't' -> turbo = !turbo;
             default -> {/* Key not bound.*/}
         }
+    }
+
+    static void setAlgorithm(final StepWiseSorter algorithm) {
+        SortingVisualisation.algorithm = algorithm;
     }
 
 }

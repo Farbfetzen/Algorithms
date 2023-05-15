@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
-import lombok.extern.slf4j.Slf4j;
-
 import farbfetzen.algorithms.geometry.GeometryAlgorithmRunner;
 import farbfetzen.algorithms.sorting.SortingAlgorithmRunner;
 
-@Slf4j
 public class Main {
 
     private static final AlgorithmRunner[] runners = {new GeometryAlgorithmRunner(), new SortingAlgorithmRunner()};

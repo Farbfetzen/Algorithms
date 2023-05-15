@@ -6,17 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import lombok.Getter;
-
 abstract class StepWiseSorter {
 
-    @Getter
     protected final int[] array;
-    @Getter
     protected boolean finished = false;
-    @Getter
     protected Set<Integer> highlights = new HashSet<>();
-    @Getter
     protected Set<Integer> comparisons = new HashSet<>();
     protected final List<SortStep> steps = new ArrayList<>();
     private final Iterator<SortStep> stepIterator;
@@ -55,6 +49,22 @@ abstract class StepWiseSorter {
         } else {
             finished = true;
         }
+    }
+
+    int[] getArray() {
+        return array;
+    }
+
+    boolean isFinished() {
+        return finished;
+    }
+
+    Set<Integer> getHighlights() {
+        return highlights;
+    }
+
+    Set<Integer> getComparisons() {
+        return comparisons;
     }
 
     protected static class SortStepBuilder {
