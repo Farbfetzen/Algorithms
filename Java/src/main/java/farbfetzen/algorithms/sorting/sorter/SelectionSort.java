@@ -1,8 +1,8 @@
-package farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting.sorter;
 
-class SelectionSort extends StepWiseSorter {
+public class SelectionSort extends StepWiseSorter {
 
-    SelectionSort(final int[] array) {
+    public SelectionSort(final int[] array) {
         super(array);
     }
 

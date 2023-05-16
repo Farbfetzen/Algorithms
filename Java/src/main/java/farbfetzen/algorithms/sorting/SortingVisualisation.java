@@ -2,6 +2,8 @@ package farbfetzen.algorithms.sorting;
 
 import processing.core.PApplet;
 
+import farbfetzen.algorithms.sorting.sorter.StepWiseSorter;
+
 public class SortingVisualisation extends PApplet {
 
     private static StepWiseSorter algorithm;

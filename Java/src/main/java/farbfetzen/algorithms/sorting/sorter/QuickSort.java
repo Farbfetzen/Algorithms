@@ -1,8 +1,8 @@
-package farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting.sorter;
 
-class QuickSort extends StepWiseSorter {
+public class QuickSort extends StepWiseSorter {
 
-    QuickSort(final int[] array) {
+    public QuickSort(final int[] array) {
         super(array);
     }
 

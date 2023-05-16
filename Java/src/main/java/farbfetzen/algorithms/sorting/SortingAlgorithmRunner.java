@@ -11,6 +11,11 @@ import org.slf4j.LoggerFactory;
 import processing.core.PApplet;
 
 import farbfetzen.algorithms.AlgorithmRunner;
+import farbfetzen.algorithms.sorting.sorter.HeapSort;
+import farbfetzen.algorithms.sorting.sorter.InsertionSort;
+import farbfetzen.algorithms.sorting.sorter.QuickSort;
+import farbfetzen.algorithms.sorting.sorter.SelectionSort;
+import farbfetzen.algorithms.sorting.sorter.StepWiseSorter;
 
 public class SortingAlgorithmRunner implements AlgorithmRunner {
 

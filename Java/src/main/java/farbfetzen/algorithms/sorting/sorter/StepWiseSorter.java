@@ -1,4 +1,4 @@
-package farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting.sorter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,7 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-abstract class StepWiseSorter {
+import farbfetzen.algorithms.sorting.SortingUtils;
+
+public abstract class StepWiseSorter {
 
     protected final int[] array;
     protected final int[] replayArray;
@@ -27,7 +29,7 @@ abstract class StepWiseSorter {
     @SuppressWarnings("squid:S6218")
     private record SortStep(int[] swap, Set<Integer> comparisons, Set<Integer> highlights) {}
 
-    StepWiseSorter(final int[] array) {
+    protected StepWiseSorter(final int[] array) {
         this.array = array;
         this.replayArray = array.clone();
         sort();
@@ -36,7 +38,7 @@ abstract class StepWiseSorter {
 
     protected abstract void sort();
 
-    void step() {
+    public void step() {
         if (stepIterator.hasNext()) {
             final var step = stepIterator.next();
             if (step.swap() != null) {
@@ -53,23 +55,19 @@ abstract class StepWiseSorter {
         }
     }
 
-    int[] getArray() {
-        return array;
-    }
-
-    int[] getReplayArray() {
+    public int[] getReplayArray() {
         return replayArray;
     }
 
-    boolean isFinished() {
+    public boolean isFinished() {
         return finished;
     }
 
-    Set<Integer> getHighlights() {
+    public Set<Integer> getHighlights() {
         return highlights;
     }
 
-    Set<Integer> getComparisons() {
+    public Set<Integer> getComparisons() {
         return comparisons;
     }
 

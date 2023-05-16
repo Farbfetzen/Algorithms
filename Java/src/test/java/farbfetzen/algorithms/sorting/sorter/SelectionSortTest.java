@@ -1,8 +1,8 @@
-package farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting.sorter;
 
-import static farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_NOT_THROW;
-import static farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_SORT;
-import static farbfetzen.algorithms.sorting.SortingAlgorithmTestUtil.sortStepwise;
+import static farbfetzen.algorithms.sorting.sorter.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_NOT_THROW;
+import static farbfetzen.algorithms.sorting.sorter.SortingAlgorithmTestUtil.PROVIDE_ARRAYS_TO_SORT;
+import static farbfetzen.algorithms.sorting.sorter.SortingAlgorithmTestUtil.sortStepwise;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 

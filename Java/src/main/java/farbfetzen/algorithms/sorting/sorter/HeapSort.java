@@ -1,8 +1,8 @@
-package farbfetzen.algorithms.sorting;
+package farbfetzen.algorithms.sorting.sorter;
 
-class HeapSort extends StepWiseSorter {
+public class HeapSort extends StepWiseSorter {
 
-    HeapSort(final int[] array) {
+    public HeapSort(final int[] array) {
         super(array);
     }
 
