@@ -13,14 +13,14 @@ class HeapSortTest {
 
     @ParameterizedTest
     @MethodSource(PROVIDE_ARRAYS_TO_SORT)
-    void shouldSortStepwise(final int[] array) {
+    void shouldSort(final int[] array) {
         sortStepwise(new HeapSort(array));
         assertThat(array).isSorted();
     }
 
     @ParameterizedTest
     @MethodSource(PROVIDE_ARRAYS_TO_NOT_THROW)
-    void shouldNotThrowStepwise(final int[] array) {
+    void shouldNotThrow(final int[] array) {
         assertThatCode(() -> sortStepwise(new HeapSort(array))).doesNotThrowAnyException();
     }
 
