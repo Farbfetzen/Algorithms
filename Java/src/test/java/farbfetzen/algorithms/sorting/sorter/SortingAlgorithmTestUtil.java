@@ -38,6 +38,7 @@ class SortingAlgorithmTestUtil {
         return array;
     }
 
+    @SuppressWarnings("unused")
     static Stream<Arguments> provideArraysToSort() {
         return Stream.of(
                 // @formatter:off
@@ -50,6 +51,7 @@ class SortingAlgorithmTestUtil {
         );
     }
 
+    @SuppressWarnings("unused")
     static Stream<Arguments> provideArraysToNotThrow() {
         return Stream.of(
                 // @formatter:off
