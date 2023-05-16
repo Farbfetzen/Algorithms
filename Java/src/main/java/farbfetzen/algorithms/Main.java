@@ -18,8 +18,8 @@ public class Main {
         }
         final var algorithmName = args.remove(0).toLowerCase(Locale.ENGLISH);
         for (final AlgorithmRunner runner : runners) {
-            if (runner.init(algorithmName, args)) {
-                runner.run();
+            if (runner.hasAlgorithm(algorithmName)) {
+                runner.run(algorithmName, args);
                 return;
             }
         }

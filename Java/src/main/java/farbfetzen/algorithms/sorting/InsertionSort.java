@@ -7,7 +7,7 @@ class InsertionSort extends StepWiseSorter {
     }
 
     @Override
-    protected void sortAndRecord(final int[] array) {
+    protected void sort() {
         for (int i = 0; i < array.length; i++) {
             var j = i - 1;
             final var currentValue = array[i];
@@ -20,22 +20,6 @@ class InsertionSort extends StepWiseSorter {
                     break;
                 }
             }
-        }
-    }
-
-    /**
-     * Sort an array in place using insertion sort.
-     *
-     * @param array the array to sort
-     */
-    static void sort(final int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            var j = i - 1;
-            final var current = array[i];
-            for (; j >= 0 && array[j] > current; j--) {
-                array[j + 1] = array[j];
-            }
-            array[j + 1] = current;
         }
     }
 

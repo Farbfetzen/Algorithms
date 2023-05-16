@@ -28,7 +28,7 @@ public class SortingVisualisation extends PApplet {
 
     @Override
     public void setup() {
-        final var array = algorithm.getArray();
+        final var array = algorithm.getReplayArray();
         n = array.length;
         columnWidth = (float) CANVAS_WIDTH / n;
         columnHeightMultiplier = (float) (CANVAS_HEIGHT - MARGIN_TOP) / max(array);
@@ -61,7 +61,7 @@ public class SortingVisualisation extends PApplet {
             } else {
                 fill(columnColor);
             }
-            final var columnHeight = algorithm.getArray()[i] * columnHeightMultiplier;
+            final var columnHeight = algorithm.getReplayArray()[i] * columnHeightMultiplier;
             rect(i * columnWidth, CANVAS_HEIGHT - columnHeight, columnWidth, columnHeight);
         }
     }

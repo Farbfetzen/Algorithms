@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface AlgorithmRunner {
 
-    boolean init(String algorithmName, List<String> args);
+    boolean hasAlgorithm(final String algorithmName);
 
-    void run();
+    void run(String algorithmName, List<String> args);
 
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 abstract class StepWiseSorter {
 
     protected final int[] array;
+    protected final int[] replayArray;
     protected boolean finished = false;
     protected Set<Integer> highlights = new HashSet<>();
     protected Set<Integer> comparisons = new HashSet<>();
@@ -28,17 +29,18 @@ abstract class StepWiseSorter {
 
     StepWiseSorter(final int[] array) {
         this.array = array;
-        sortAndRecord(array.clone());
+        this.replayArray = array.clone();
+        sort();
         stepIterator = steps.iterator();
     }
 
-    protected abstract void sortAndRecord(final int[] array);
+    protected abstract void sort();
 
     void step() {
         if (stepIterator.hasNext()) {
             final var step = stepIterator.next();
             if (step.swap() != null) {
-                SortingUtils.swap(array, step.swap()[0], step.swap()[1]);
+                SortingUtils.swap(replayArray, step.swap()[0], step.swap()[1]);
             }
             if (step.comparisons() != null) {
                 comparisons = step.comparisons();
@@ -53,6 +55,10 @@ abstract class StepWiseSorter {
 
     int[] getArray() {
         return array;
+    }
+
+    int[] getReplayArray() {
+        return replayArray;
     }
 
     boolean isFinished() {
