@@ -1,29 +1,45 @@
 package farbfetzen.algorithms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 
-import farbfetzen.algorithms.geometry.GeometryAlgorithmRunner;
 import farbfetzen.algorithms.sorting.SortingAlgorithmRunner;
 
 public class Main {
 
-    private static final AlgorithmRunner[] runners = {new GeometryAlgorithmRunner(), new SortingAlgorithmRunner()};
+    private static class MainArgs {
 
-    public static void main(final String[] arguments) {
-        final var args = new ArrayList<>(Arrays.asList(arguments));
-        if (args.isEmpty()) {
-            throw new IllegalArgumentException("Please provide the name of an algorithm as the first argument.");
+        @Parameter(names = {"-h", "--help"}, description = "Display this help message.", help = true)
+        private boolean showHelp;
+
+    }
+
+    public static void main(final String[] args) {
+        final var mainArgs = new MainArgs();
+        final var sortingArgs = new SortingAlgorithmRunner.SortingArgs();
+        final var jc = JCommander
+                .newBuilder()
+                .programName("algorithms")
+                .addObject(mainArgs)
+                .addCommand("sort", sortingArgs)
+                .build();
+
+        try {
+            jc.parse(args);
+        } catch (final ParameterException e) {
+            System.err.println(e.getMessage());
+            jc.usage();
+            System.exit(1);
         }
-        final var algorithmName = args.remove(0).toLowerCase(Locale.ENGLISH);
-        for (final AlgorithmRunner runner : runners) {
-            if (runner.hasAlgorithm(algorithmName)) {
-                runner.run(algorithmName, args);
-                return;
-            }
+        if (mainArgs.showHelp) {
+            jc.usage();
+            System.exit(0);
         }
-        throw new IllegalArgumentException("Unknown algorithm name '" + algorithmName + "'.");
+
+        if (jc.getParsedCommand().equals("sort")) {
+            new SortingAlgorithmRunner().run(sortingArgs);
+        }
     }
 
 }
