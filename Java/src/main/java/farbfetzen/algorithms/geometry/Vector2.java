@@ -1,4 +1,4 @@
-package farbfetzen.algorithms.util;
+package farbfetzen.algorithms.geometry;
 
 import java.util.Objects;
 
