@@ -23,7 +23,7 @@ class Vector2Test {
     }
 
     @Test
-    void noArgsConstructorShouldSetZeros() {
+    void noArgumentsConstructorShouldSetZeros() {
         final var vector = new Vector2();
         assertThat(vector.getX()).isZero();
         assertThat(vector.getY()).isZero();

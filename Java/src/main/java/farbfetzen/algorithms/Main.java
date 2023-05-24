@@ -8,37 +8,37 @@ import farbfetzen.algorithms.sorting.SortingAlgorithmRunner;
 
 public class Main {
 
-    private static class MainArgs {
+    private static class MainArguments {
 
         @Parameter(names = {"-h", "--help"}, description = "Display this help message.", help = true)
         private boolean showHelp;
 
     }
 
-    public static void main(final String[] args) {
-        final var mainArgs = new MainArgs();
-        final var sortingArgs = new SortingAlgorithmRunner.SortingArgs();
+    public static void main(final String[] arguments) {
+        final var mainArguments = new MainArguments();
+        final var sortingArguments = new SortingAlgorithmRunner.SortingArguments();
         final var jc = JCommander
                 .newBuilder()
                 .programName("algorithms")
-                .addObject(mainArgs)
-                .addCommand("sort", sortingArgs)
+                .addObject(mainArguments)
+                .addCommand("sort", sortingArguments)
                 .build();
 
         try {
-            jc.parse(args);
+            jc.parse(arguments);
         } catch (final ParameterException e) {
             System.err.println(e.getMessage());
             jc.usage();
             System.exit(1);
         }
-        if (mainArgs.showHelp) {
+        if (mainArguments.showHelp) {
             jc.usage();
             System.exit(0);
         }
 
         if (jc.getParsedCommand().equals("sort")) {
-            new SortingAlgorithmRunner().run(sortingArgs);
+            new SortingAlgorithmRunner().run(sortingArguments);
         }
     }
 

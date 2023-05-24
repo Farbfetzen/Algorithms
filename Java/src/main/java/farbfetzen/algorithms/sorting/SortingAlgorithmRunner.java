@@ -20,7 +20,7 @@ import farbfetzen.algorithms.sorting.sorter.StepWiseSorter;
 public class SortingAlgorithmRunner {
 
     @Parameters(commandDescription = "Arguments for sorting algorithms.")
-    public static class SortingArgs {
+    public static class SortingArguments {
 
         @Parameter(description = "name", required = true)
         private String name;
@@ -38,17 +38,17 @@ public class SortingAlgorithmRunner {
             "selection", SelectionSort::new
     );
 
-    public void run(final SortingArgs args) {
-        final Function<int[], StepWiseSorter> constructor = algorithms.get(args.name);
+    public void run(final SortingArguments arguments) {
+        final Function<int[], StepWiseSorter> constructor = algorithms.get(arguments.name);
         if (constructor == null) {
-            System.err.println("Unknown sorting algorithm '" + args.name + "'.");
+            System.err.println("Unknown sorting algorithm '" + arguments.name + "'.");
             return;
         }
-        final var elements = IntStream.rangeClosed(1, args.numberOfElements).toArray();
+        final var elements = IntStream.rangeClosed(1, arguments.numberOfElements).toArray();
         ArrayUtils.shuffle(elements);
         final StepWiseSorter sorter = constructor.apply(elements);
 
-        logger.info("Running {} sort with {} elements.", args.name, args.numberOfElements);
+        logger.info("Running {} sort with {} elements.", arguments.name, arguments.numberOfElements);
         logger.info("Starting visualization");
         SortingVisualisation.setAlgorithm(sorter);
         PApplet.main(SortingVisualisation.class);
