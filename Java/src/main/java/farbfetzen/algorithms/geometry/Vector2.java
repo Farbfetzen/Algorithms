@@ -21,12 +21,20 @@ public class Vector2 implements Comparable<Vector2> {
         return x;
     }
 
+    public float getXf() {
+        return (float) x;
+    }
+
     public void setX(final double x) {
         this.x = x;
     }
 
     public double getY() {
         return y;
+    }
+
+    public float getYf() {
+        return (float) y;
     }
 
     public void setY(final double y) {
@@ -56,6 +64,11 @@ public class Vector2 implements Comparable<Vector2> {
     public int compareTo(final Vector2 other) {
         final var compareX = Double.compare(x, other.x);
         return compareX != 0 ? compareX : Double.compare(y, other.y);
+    }
+
+    @Override
+    public String toString() {
+        return "Vector2{x=" + x + ", y=" + y + '}';
     }
 
 }

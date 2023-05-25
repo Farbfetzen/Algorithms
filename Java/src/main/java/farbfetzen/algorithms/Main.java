@@ -4,6 +4,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 
+import farbfetzen.algorithms.geometry.GeometryAlgorithmRunner;
 import farbfetzen.algorithms.sorting.SortingAlgorithmRunner;
 
 public class Main {
@@ -18,11 +19,13 @@ public class Main {
     public static void main(final String[] arguments) {
         final var mainArguments = new MainArguments();
         final var sortingArguments = new SortingAlgorithmRunner.SortingArguments();
+        final var geometryArguments = new GeometryAlgorithmRunner.GeometryArguments();
         final var jc = JCommander
                 .newBuilder()
                 .programName("algorithms")
                 .addObject(mainArguments)
                 .addCommand("sort", sortingArguments)
+                .addCommand("geometry", geometryArguments)
                 .build();
 
         try {
@@ -37,8 +40,10 @@ public class Main {
             System.exit(0);
         }
 
-        if (jc.getParsedCommand().equals("sort")) {
-            new SortingAlgorithmRunner().run(sortingArguments);
+        switch (jc.getParsedCommand()) {
+            case "sort" -> new SortingAlgorithmRunner().run(sortingArguments);
+            case "geometry" -> new GeometryAlgorithmRunner().run(geometryArguments);
+            default -> System.err.println("Unknown command '" + jc.getParsedCommand() + "'.");
         }
     }
 
