@@ -20,15 +20,15 @@ class ConvexHull {
             hull = vertices;
             return;
         }
-        // TODO: Check if removing points using the Akl-Toussaint heuristic prior to sorting
-        //  makes the algorithm faster for large numbers of points.
+        // I tried to use the Akl-Toussaint heuristic to reduce the number of points
+        // but that doubled the time instead of reducing it.
         Collections.sort(vertices);
-        hull = constructUpperHull();
-        final var lowerHull = constructLowerHull();
+        hull = constructUpperHull(vertices);
+        final var lowerHull = constructLowerHull(vertices);
         hull.addAll(lowerHull.subList(1, lowerHull.size() - 1));
     }
 
-    private List<Vector2> constructUpperHull() {
+    private static List<Vector2> constructUpperHull(final List<Vector2> vertices) {
         final var upperHull = new ArrayList<Vector2>();
         upperHull.add(vertices.get(0));
         upperHull.add(vertices.get(1));
@@ -41,7 +41,7 @@ class ConvexHull {
         return upperHull;
     }
 
-    private List<Vector2> constructLowerHull() {
+    private static List<Vector2> constructLowerHull(final List<Vector2> vertices) {
         final var lowerHull = new ArrayList<Vector2>();
         lowerHull.add(vertices.get(vertices.size() - 1));
         lowerHull.add(vertices.get(vertices.size() - 2));
